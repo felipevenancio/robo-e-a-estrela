@@ -243,7 +243,7 @@
   // ---------- Three.js setup ----------
   const wrap = document.getElementById('canvas-wrap');
   const scene = new THREE.Scene();
-  scene.background = new THREE.Color(0xBEE7FF);
+  // sem scene.background: fica transparente, deixando o céu/grama da página aparecer atrás do tabuleiro
   scene.fog = new THREE.Fog(0xBEE7FF, 20, 34);
 
   // Câmera em 3ª pessoa: perspectiva de verdade (com profundidade), mais
@@ -256,7 +256,8 @@
   }
   positionCamera();
 
-  const renderer = new THREE.WebGLRenderer({ antialias:true });
+  const renderer = new THREE.WebGLRenderer({ antialias:true, alpha:true });
+  renderer.setClearColor(0x000000, 0);
   renderer.shadowMap.enabled = true;
   wrap.appendChild(renderer.domElement);
 
